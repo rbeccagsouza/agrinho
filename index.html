@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agroecologia - Cultivando o Futuro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --verde-escuro: #2E8B57;
+            --verde-claro: #8FBC8F;
+            --marrom: #80abc4;
+            --marrom-claro: #D2B48C;
+            --azul: #4682B4;
+            --branco: #FFFFFF;
+            --cinza: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--cinza);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2026&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            color: var(--branco);
+            min-height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        nav {
+            background-color: var(--verde-escuro);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--marrom-claro);
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--verde-claro);
+            color: var(--branco);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--verde-claro);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--verde-claro);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--verde-escuro);
+            font-size: 2.2rem;
+        }
+
+        .card {
+            background-color: var(--branco);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-top: 5px solid var(--verde-escuro);
+        }
+
+        .card h3 {
+            color: var(--marrom);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card i {
+            color: var(--verde-escuro);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(46, 139, 87, 0.8);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--branco);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--verde-escuro);
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            min-height: 150px;
+        }
+
+        footer {
+            background-color: var(--verde-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: var(--branco);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--marrom-claro);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#principios">Princípios</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <header id="inicio">
+        <div class="hero-content">
+            <h1>Agroecologia</h1>
+            <p>Conectando pessoas, natureza e agricultura sustentável para um futuro melhor</p>
+            <a href="#sobre" class="btn">Saiba Mais</a>
+        </div>
+    </header>
+
+    <section id="sobre">
+        <div class="container">
+            <h2>Sobre Agroecologia</h2>
+            <div class="about-grid">
+                <div class="card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>O que é Agroecologia?</h3>
+                    <p>A agroecologia é uma abordagem científica que aplica conceitos e princípios ecológicos ao desenho e manejo de agroecossistemas sustentáveis. Ela busca otimizar as interações entre plantas, animais, humanos e meio ambiente, levando em conta os aspectos sociais que devem ser abordados para um sistema alimentar sustentável e justo.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-history"></i>
+                    <h3>História</h3>
+                    <p>A agroecologia emergiu como uma resposta aos problemas ambientais e sociais causados pela agricultura industrial. Suas raízes remontam às práticas tradicionais de agricultores indígenas e camponeses, combinadas com conhecimentos científicos modernos sobre ecologia e sistemas complexos.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Importância</h3>
+                    <p>Em um mundo enfrentando mudanças climáticas, perda de biodiversidade e desigualdades sociais, a agroecologia oferece soluções práticas para produzir alimentos de maneira sustentável, preservar os ecossistemas e fortalecer as comunidades rurais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="principios" style="background-color: var(--cinza);">
+        <div class="container">
+            <h2>Princípios da Agroecologia</h2>
+            <div class="principles">
+                <div class="card">
+                    <i class="fas fa-recycle"></i>
+                    <h3>Reciclagem de Nutrientes</h3>
+                    <p>Fechar os ciclos de nutrientes e energia no sistema agrícola, reduzindo a dependência de insumos externos.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-biohazard"></i>
+                    <h3>Diversidade</h3>
+                    <p>Manter e aumentar a biodiversidade funcional para melhorar a resiliência e produtividade do sistema.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-hand-holding-water"></i>
+                    <h3>Manejo Ecológico</h3>
+                    <p>Utilizar processos ecológicos naturais para controle de pragas e doenças, reduzindo o uso de agroquímicos.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users"></i>
+                    <h3>Justiça Social</h3>
+                    <p>Promover sistemas alimentares justos que valorizem os conhecimentos tradicionais e garantam direitos aos agricultores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="container">
+            <h2>Galeria</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1602020277972-99978250c8bd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Agricultura sustentável">
+                    <div class="gallery-overlay">Comunidade rural</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1524602585632-a2a01c12307c?q=80&w=2107&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Produção orgânica">
+                    <div class="gallery-overlay">Produção orgânica</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1433704334812-6c45b0b8784d?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Produtos agroecológicos">
+                    <div class="gallery-overlay">Produtos agroecológicos</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1579765875481-1bc20e5a4a49?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Feira de produtos naturais">
+                    <div class="gallery-overlay">Feira de produtos naturais</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1058401/pexels-photo-1058401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Educação agroecológica">
+                    <div class="gallery-overlay">Educação agroecológica</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2284170/pexels-photo-2284170.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Comunidade rural">
+                    <div class="gallery-overlay">Agricultura sustentável</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" style="background-color: var(--cinza);">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <form>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="assunto">Assunto:</label>
+                    <select id="assunto" name="assunto">
+                        <option value="info">Informações</option>
+                        <option value="curso">Cursos</option>
+                        <option value="visita">Visitas Técnicas</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>Agroecologia - Cultivando o Futuro</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2023 Agroecologia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
